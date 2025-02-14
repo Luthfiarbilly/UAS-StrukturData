@@ -1,0 +1,36 @@
+function isValid(s) {
+    // Stack untuk menyimpan tanda kurung yang belum ditutup
+    let stack = [];
+    
+    // Mapping pasangan tanda kurung buka dan tutup
+    let bracketMap = {
+      '(': ')',
+      '{': '}',
+      '[': ']'
+    };
+    
+    // Iterasi melalui setiap karakter dalam string
+    for (let char of s) {
+      // Jika karakter adalah tanda kurung buka, push ke stack
+      if (bracketMap[char]) {
+        stack.push(char);
+      } 
+      // Jika karakter adalah tanda kurung tutup
+      else {
+        // Jika stack kosong atau pasangan tidak cocok, return false
+        if (stack.length === 0 || bracketMap[stack.pop()] !== char) {
+          return false;
+        }
+      }
+    }
+    
+    // Jika stack kosong, berarti semua kurung tertutup dengan benar
+    return stack.length === 0;
+  }
+  
+  // Test cases
+  console.log(isValid("()[]{}"));   // Output: true
+  console.log(isValid("(]"));       // Output: false
+  console.log(isValid("([{}])"));   // Output: true
+  console.log(isValid("({[}]"));    // Output: false
+  
