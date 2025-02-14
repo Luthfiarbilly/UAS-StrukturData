@@ -1,0 +1,45 @@
+class MyQueue {
+    constructor() {
+      this.stackPush = [];
+      this.stackPop = [];
+    }
+  
+    // Menambahkan elemen ke belakang queue
+    push(x) {
+      this.stackPush.push(x);
+    }
+  
+    // Menghapus dan mengembalikan elemen dari depan queue
+    pop() {
+      if (this.stackPop.length === 0) {
+        while (this.stackPush.length > 0) {
+          this.stackPop.push(this.stackPush.pop());
+        }
+      }
+      return this.stackPop.pop();
+    }
+  
+    // Mengembalikan elemen di depan queue tanpa menghapusnya
+    peek() {
+      if (this.stackPop.length === 0) {
+        while (this.stackPush.length > 0) {
+          this.stackPop.push(this.stackPush.pop());
+        }
+      }
+      return this.stackPop[this.stackPop.length - 1];
+    }
+  
+    // Mengembalikan true jika queue kosong, false jika tidak
+    empty() {
+      return this.stackPush.length === 0 && this.stackPop.length === 0;
+    }
+  }
+  
+  // Penggunaan
+  const queue = new MyQueue();
+  queue.push(1);
+  queue.push(2);
+  console.log(queue.peek());  // Output: 1
+  console.log(queue.pop());   // Output: 1
+  console.log(queue.empty()); // Output: false
+  
