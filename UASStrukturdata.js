@@ -1,0 +1,42 @@
+// Definisikan struktur TreeNode
+class TreeNode {
+    constructor(value) {
+      this.val = value;
+      this.left = null;
+      this.right = null;
+    }
+  }
+  
+  // Fungsi untuk melakukan inorder traversal
+  function inorderTraversal(root) {
+    let result = [];
+  
+    // Fungsi rekursif untuk melakukan inorder traversal
+    function inorder(node) {
+      if (node === null) {
+        return;
+      }
+      
+      // Traverse subtree kiri
+      inorder(node.left);
+      
+      // Tambahkan nilai node ke hasil
+      result.push(node.val);
+      
+      // Traverse subtree kanan
+      inorder(node.right);
+    }
+  
+    // Mulai traversal dari root
+    inorder(root);
+    return result;
+  }
+  
+  // Membangun binary tree
+  const root = new TreeNode(1);
+  root.right = new TreeNode(2);
+  root.right.left = new TreeNode(3);
+  
+  // Melakukan inorder traversal dan mencetak hasilnya
+  console.log(inorderTraversal(root)); // Output: [1, 3, 2]
+  
